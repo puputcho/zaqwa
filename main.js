@@ -14,18 +14,23 @@ function setup() {
     canvas = createCanvas(600, 500);
     canvas.center();
     video = createCapture(VIDEO);
-    video.hide()
+    video.hide();
     poseNet = ml5.poseNet(video, modelLoaded);
     poseNet.on('pose', gotPoses);
 }
+
 function gotPoses() {
-    
-} 
+
+}
+
 function draw() {
-    image(video, 0, 0, 600, 500)
+    image(video, 0, 0, 600, 500);
     if (precisaoPunhoE > 0.2) {
-        fill('#70ffe0')
-        circle(0,0,40)
+        fill('#70ffe0');
+        circle(punhoEsquerdoX, punhoEsquerdoY, 20);
+        numeroInteiro = floor(Number(punhoEsquerdoY));
+        volume = numeroInteiro / 500;
+        document.getElementById('volume').innerHTML = 'Volume = ' + volume;
     }
 }
 
